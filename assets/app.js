@@ -31,13 +31,34 @@ function qb(cat, items){ items.forEach(function(it){ it.cat = cat; }); QB[cat] =
     var isCat = CATS.some(function(c){ return c.id === page; });
     h.innerHTML = '<div class="site-in"><a class="brand" href="index.html">PM interview bank</a><nav class="site-links" aria-label="Site">' +
       '<a href="index.html"' + (page === 'home' ? ' aria-current="page"' : '') + '>Home</a>' +
-      '<a href="frameworks.html"' + (page === 'frameworks' ? ' aria-current="page"' : '') + '>Frameworks</a></nav></div>' +
+      '<a href="frameworks.html"' + (page === 'frameworks' ? ' aria-current="page"' : '') + '>Frameworks</a></nav>' +
+      '<button class="theme-btn" id="theme" type="button"></button></div>' +
       (isCat ? '<nav class="chips" aria-label="Categories">' + CATS.map(function(c){
         return '<a class="chip" href="' + c.id + '.html"' + (c.id === page ? ' aria-current="page"' : '') + '>' + esc(c.title) + '</a>';
       }).join('') + '</nav>' : '');
     document.body.insertBefore(h, document.body.firstChild);
+    themeToggle(h.querySelector('#theme'));
     var cur = h.querySelector('.chip[aria-current]');
     if (cur) cur.parentNode.scrollLeft = cur.offsetLeft - (cur.parentNode.clientWidth - cur.offsetWidth) / 2;
+  }
+
+  // Light/dark toggle. Starts from the system setting; an explicit choice is saved.
+  function themeToggle(btn){
+    var root = document.documentElement, mq = window.matchMedia('(prefers-color-scheme: dark)');
+    function isDark(){ return root.dataset.theme ? root.dataset.theme === 'dark' : mq.matches; }
+    function label(){
+      var d = isDark();
+      btn.textContent = d ? '☀' : '☾';
+      btn.setAttribute('aria-label', d ? 'Switch to light mode' : 'Switch to dark mode');
+      btn.title = btn.getAttribute('aria-label');
+    }
+    btn.addEventListener('click', function(){
+      root.dataset.theme = isDark() ? 'light' : 'dark';
+      try { localStorage.setItem('pmqb-theme', root.dataset.theme); } catch(e){}
+      label();
+    });
+    if (mq.addEventListener) mq.addEventListener('change', label);
+    label();
   }
 
   function card(q){

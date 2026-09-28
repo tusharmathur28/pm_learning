@@ -37,6 +37,8 @@ h3{font-size:1.25rem;margin:0 0 6px}
 .site-links{display:flex;gap:4px}
 .site-links a{color:var(--ink);text-decoration:none;padding:8px 12px;border-radius:8px;font-weight:600;font-size:.95rem}
 .site-links a[aria-current="page"],.site-links a:hover{background:var(--accent-soft)}
+.theme-btn{flex:0 0 auto;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-size:1.15rem;line-height:1;display:grid;place-items:center}
+.theme-btn:hover{border-color:var(--accent)}
 .chips{position:relative;max-width:1120px;margin:0 auto;display:flex;gap:8px;overflow-x:auto;padding:0 max(20px,env(safe-area-inset-right)) 10px max(20px,env(safe-area-inset-left));scrollbar-width:thin}
 .chip{flex:0 0 auto;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:.9rem;white-space:nowrap;text-decoration:none}
 .chip[aria-current="page"]{background:var(--accent-soft);border-color:var(--accent);font-weight:600}
@@ -167,8 +169,11 @@ footer.note{margin-top:44px;color:var(--muted);font-size:.9rem}
   .body{padding:4px 16px 14px}
   .num{flex-basis:1.7em}
   .qt{font-size:1.08rem}
-  .brand{font-size:1.05rem}
-  .site-links a{padding:8px 8px}
+  .site-in{gap:8px}
+  .brand{font-size:1rem}
+  .site-links{gap:0}
+  .site-links a{padding:8px 7px}
+  .theme-btn{width:40px;height:40px}
 }
 @media (prefers-reduced-motion: reduce){.q summary::after,.card{transition:none}}
 @media (max-height:500px) and (orientation:landscape){
