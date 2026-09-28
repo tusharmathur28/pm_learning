@@ -153,7 +153,7 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
 footer.note{margin-top:44px;color:var(--muted);font-size:.9rem}
 
 @media (max-width:900px){
-  .layout{grid-template-columns:1fr}
+  .layout{grid-template-columns:minmax(0,1fr)}
   .toc{display:none}
   .jump{display:block;width:100%;font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 12px;min-height:44px;margin-bottom:12px}
 }
